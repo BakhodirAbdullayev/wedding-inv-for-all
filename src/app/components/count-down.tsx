@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Playfair_Display } from "next/font/google";
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Playfair_Display } from 'next/font/google';
 
 const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
 });
 
 interface TimeLeft {
@@ -17,10 +17,10 @@ interface TimeLeft {
 }
 
 const uzbekTimeUnits = {
-  days: "kun",
-  hours: "soat",
-  minutes: "daqiqa",
-  seconds: "soniya",
+  days: 'kun',
+  hours: 'soat',
+  minutes: 'daqiqa',
+  seconds: 'soniya',
 };
 
 export default function CountdownTimer({ targetDate }: { targetDate: string }) {
@@ -57,32 +57,32 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
 
   return (
     <motion.div
-      data-aos="fade-up"
+      data-aos='fade-up'
       // initial={{ opacity: 0, y: 20 }}
       // animate={{ opacity: 1, y: 0 }}
       // transition={{ duration: 0.5, delay: 0.8 }}
       className={`${playfair.className} text-center mt-4 pb-3`}
     >
-      <h2 className="text-xl text-[#a9a05c] mb-4 font-medium italic">
+      <h2 className='text-xl text-[#a9a05c] mb-4 font-medium italic'>
         To'ygacha qolgan vaqt
       </h2>
-      <div className="flex justify-center space-x-6">
+      <div className='flex justify-center space-x-6'>
         {Object.entries(timeLeft).map(([unit, value]) => {
           return (
-            <div key={unit} className="flex flex-col items-center">
-              <AnimatePresence mode="popLayout">
+            <div key={unit} className='flex flex-col items-center'>
+              <AnimatePresence mode='popLayout'>
                 <motion.span
                   key={value}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="text-3xl font-bold text-[#a9a05c]"
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
+                  className='text-3xl font-bold text-[#a9a05c]'
                 >
                   {value}
                 </motion.span>
               </AnimatePresence>
-              <span className="text-sm text-[#a9a05c] mt-1 italic">
+              <span className='text-sm text-[#a9a05c] mt-1 italic'>
                 {uzbekTimeUnits[unit as keyof typeof uzbekTimeUnits]}
               </span>
             </div>

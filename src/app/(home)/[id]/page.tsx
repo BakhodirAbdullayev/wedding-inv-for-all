@@ -1,11 +1,11 @@
-import Author from "@/app/components/author";
-import DateSection from "@/app/components/date";
-import Location from "@/app/components/location";
-import Music from "@/app/components/music";
-import Showcase from "@/app/components/showcase";
-import { BASE_URL } from "@/config";
-import { WeddingData } from "@/types";
-import { notFound } from "next/navigation";
+import Author from '@/app/components/author';
+import DateSection from '@/app/components/date';
+import Location from '@/app/components/location';
+import Music from '@/app/components/music';
+import Showcase from '@/app/components/showcase';
+import { BASE_URL } from '@/config';
+import { WeddingData } from '@/types';
+import { notFound } from 'next/navigation';
 
 interface PageProps {
   params: { id: string };
@@ -15,7 +15,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const res = await fetch(`${BASE_URL}/api/data/${params?.id}`);
 
-  if (!res.ok) return { title: "Not Found" };
+  if (!res.ok) return { title: 'Not Found' };
 
   const page: WeddingData = await res.json();
   return { title: page.title, description: page.description };
@@ -32,7 +32,7 @@ export default async function Page({ params }: PageProps) {
   const { man, woman, logo, paragraph, families, date, address_link, address } =
     data;
   return (
-    <main className="w-full">
+    <main className='w-full'>
       <Showcase
         couple={{
           man,
@@ -41,7 +41,7 @@ export default async function Page({ params }: PageProps) {
         logo={logo}
       />
       <DateSection {...{ families, paragraph, date }} />
-      <Location {...{ address, address_link }} />
+      <Location {...{ address, address_link, date }} />
       <Music />
       <Author />
     </main>
